@@ -33,17 +33,17 @@ const App = () => {
   return (
     <div>
       <SavedList list={[ /* This is stretch */]} />
-      <div>Replace this Div with your Routes</div>
+     { /*<div>Replace this Div with your Routes</div>*/}
       <Switch>
         <Route
         exact
         path="/"
         render={(props)=>{
           console.log("react-props", props)
-          return <MovieList movies={MovieList}/>
+          return <MovieList movies={movieList}/>
         }}/>
         <Route path="/movies/:slug">
-          <Movie />
+          <Movie movies = {movieList}/>
         </Route>
       </Switch>
     </div>
