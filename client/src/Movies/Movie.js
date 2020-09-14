@@ -22,7 +22,7 @@ const Movie = (props) => {
           console.error(error);
         });
 
-  },[props.movies]);
+  },[params.slug]);
   
   // Uncomment this only when you have moved on to the stretch goals
   // const saveMovie = evt => {
@@ -34,7 +34,7 @@ const Movie = (props) => {
 
   const { title, director, metascore, stars } = movie;
   return (
-    <Link to={routeMatch.url}>
+    
     <div className="save-wrapper">
     
       <div className="movie-card">
@@ -57,7 +57,7 @@ const Movie = (props) => {
       
       <div className="save-button">Save</div>
     </div>
-    </Link>
+    
   );
 }
 

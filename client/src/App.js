@@ -5,6 +5,7 @@ import {Route, Link, Switch} from 'react-router-dom';
 import SavedList from './Movies/SavedList';
 import MovieList from './Movies/MovieList';
 import Movie from './Movies/Movie';
+import MovieCard from './Movies/MovieCard';
 
 
 const App = () => {
@@ -40,7 +41,7 @@ const App = () => {
         path="/"
         render={(props)=>{
           console.log("react-props", props)
-          return <MovieList movies={movieList}/>
+          return <MovieCard movies={movieList}/>
         }}/>
         <Route path="/movies/:slug">
           <Movie movies = {movieList}/>
