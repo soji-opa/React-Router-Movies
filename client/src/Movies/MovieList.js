@@ -1,31 +1,36 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom'
+import axios from 'axios';
+import MovieCard from './MovieCard';
 
-const MovieList = props => {
+const MovieList = () => {
+
+  const [movieList, setMovieList] = useState([]);
+
+  useEffect(() => {
+    const getMovies = () => {
+      axios
+        .get('http://localhost:5000/api/movies')
+        .then(response => {
+          console.log('response', response)
+          setMovieList(response.data);
+        })
+        .catch(error => {
+          console.error('Server Error', error);
+        });
+    }
+    getMovies();
+  }, []);
+
   return (
     <div className="movie-list">
-      {props.movies.map(movie => (
-        <MovieDetails key={movie.id} movie={movie} />
+      {movieList.map(movie => (
+        <MovieCard key={movie.id} movie={movie} />
       ))}
+
     </div>
   );
 }
 
-function MovieDetails({ movie }) {
-  const { title, director, metascore, id } = movie;
-  return (
-    <Link to={`/movies/${id}`}>
-      <div className="movie-card">
-      <h2>{title}</h2>
-        <div className="movie-director">
-          Director: <em>{director}</em>
-        </div>
-        <div className="movie-metascore">
-          Metascore: <strong>{metascore}</strong>
-        </div>
-      </div>
-    </Link>
-  );
-}
 
 export default MovieList;

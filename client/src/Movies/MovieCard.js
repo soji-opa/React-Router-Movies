@@ -1,19 +1,9 @@
 import React from 'react';
-
 import {Link} from 'react-router-dom'
 
-const MovieCard = props => {
-  return (
-    <div className="movie-list">
-      {props.movies.map(movie => (
-        <MovieDetails key={movie.id} movie={movie} />
-      ))}
-    </div>
-  );
-}
 
-function MovieDetails({ movie }) {
-  const { title, director, metascore, id } = movie;
+function MovieCard({ movie }) {
+  const { title, director, metascore, id, stars } = movie;
   return (
     <Link to={`/movies/${id}`}>
       <div className="movie-card">
@@ -23,7 +13,17 @@ function MovieDetails({ movie }) {
         </div>
         <div className="movie-metascore">
           Metascore: <strong>{metascore}</strong>
+
         </div>
+        
+        {stars && stars.length && <h3>Actors</h3>}
+        { stars && stars.length ? stars.map(star => (
+          <div key={star} className="movie-star">
+            {star}
+          </div>
+        ))
+        : null
+      }
       </div>
     </Link>
 
